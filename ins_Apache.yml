@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: Installs Apache web server
+      yum: pkg=httpd state=installed update_cache=true
+      notify:
+        - start apache
+
+  handlers:
+    - name: start apache
+      service: name=httpd state=started
